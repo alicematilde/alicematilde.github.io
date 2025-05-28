@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Conta</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    
+<div class="header">
+        <img src="titulo - Cópia.png" alt="Título da Ginástica Rítmica">
+
+    <h1 class="titulo-principal">Minha Conta</h1>
+
+    <form id="contaForm">
+        <input type="text" id="nome" placeholder="Nome completo" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <button type="submit">Guardar</button>
+    </form>
+
+    <div class="mensagem" id="mensagem"></div>
+
+    <div class="bottom-menu">
+        <div class="menu-item">
+            <img src="Início.jpg" alt="Início" onclick="location.href='index.html'">
+            <p>Início</p>
+        </div>
+        <div class="menu-item">
+            <img src="locais.png" alt="Locais" onclick="location.href='locais.html'">
+            <p>Locais</p>
+        </div>
+        <div class="menu-item">
+            <img src="conta.png" alt="Conta">
+            <p>Conta</p>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('contaForm');
+        const mensagem = document.getElementById('mensagem');
+
+        window.onload = () => {
+            const nomeGuardado = localStorage.getItem("nome");
+            if (nomeGuardado) {
+                mensagem.innerText = `Bem-vindo(a), ${nomeGuardado}!`;
+            }
+        };
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+
+            localStorage.setItem("nome", nome);
+            localStorage.setItem("email", email);
+
+            mensagem.innerText = `Bem-vindo(a), ${nome}! Os teus dados foram guardados com sucesso.`;
+            form.reset();
+        });
+    </script>
+</body>
+</html>
